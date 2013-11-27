@@ -1,4 +1,4 @@
-﻿define(['plugins/router'], function (router) {
+﻿define(['plugins/router', 'knockout'], function (router, ko) {
 
 	/////////////////////
 	// Private Members

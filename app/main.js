@@ -5,30 +5,27 @@
         'plugins': '../lib/durandal/js/plugins',
         'transitions': '../lib/durandal/js/transitions',
         'knockout': [
-            '//cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min',
+            'http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min',
             '../lib/knockout/knockout-3.0.0'
         ],
         'jquery': [
-            '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
             '../lib/jquery/jquery-1.9.1.min'
         ]
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function( system, app, viewLocator ) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', ], function( system, app, viewLocator ) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
 
-    app.title = 'Durandal Samples';
+    app.title = 'Durandal dFiddle';
 
     //specify which plugins to install and their configuration
     app.configurePlugins({
         router: true,
-        dialog: true,
-        widget: {
-            kinds: ['expander']
-        }
+        dialog: true
     });
 
     app.start().then(function() {
@@ -37,6 +34,6 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function( sy
         viewLocator.useConvention();
 
         //Show the app by setting the root view model for our application.
-        app.setRoot('shell');
+        app.setRoot('viewmodels/shell');
     });
 });
