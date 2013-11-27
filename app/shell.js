@@ -1,5 +1,14 @@
 ﻿define(['plugins/router'], function (router) {
 
+	/////////////////////
+	// Private Members
+	/////////////////////
+	var deactivateMessage = ko.observable();
+	
+	/////////////////////
+	// Internal Methods
+	/////////////////////
+	
     // Redirecting from / to first route
     router.guardRoute = function(routeInfo, params, instance){
         if (params.fragment === ''){
@@ -8,23 +17,38 @@
         return true;
     };
 
-    return {
-        router: router,
-        activate: function () {
-            router.map([
-                { route: '', moduleId: 'hello/index', title: 'Hello World' },
-                { route: 'hello*details', hash: '#hello', moduleId: 'hello/index', title: 'Hello World', nav: 1 },
-                { route: 'view-composition*details', hash:'#view-composition', moduleId: 'viewComposition/index', title: 'View Composition', nav: true },
-                { route: 'modal*details', hash: '#modal', moduleId: 'modal/index', title: 'Modal Dialogs', nav: 3 },
-                { route: 'event-aggregator*details', hash: '#event-aggregator', moduleId: 'eventAggregator/index', title: 'Events', nav: 2 },
-                { route: 'widgets*details', hash:'#widgets',  moduleId: 'widgets/index', title: 'Widgets', nav: true },
-                { route: 'master-detail*details', hash: '#master-detail', moduleId: 'masterDetail/index', title: 'Master Detail', nav: true },
-                { route: 'knockout-samples*details', hash: '#knockout-samples', moduleId: 'ko/index', title: 'Knockout Samples', nav: true },
-                { route: 'extras*details', hash: '#extras', moduleId: 'extras/index', title: 'Extras', nav: true,  admin: true  },
-                { route: 'so*details', hash: '#so', moduleId: 'so/index', title: 'so', nav: true }
-            ]).buildNavigationModel();
+	/////////////////////
+	// Lifecyle Methods
+	/////////////////////
 
-            return router.activate();
-        }
+	/**
+	* Event on viewmodel initialization
+	* @param {object} route parameters object
+	* @return true is initialization was successful
+	*/
+    function activate() {
+		app.on('test:deactivate', function(message) {
+			deactivateMessage(message);
+		});
+
+		// Load route from our config module
+		return router.map([
+                { route: '', moduleId: 'viewmodels/pageA', title: 'Page A', nav: false },
+                { route: 'pageA', moduleId: 'viewmodels/pageA', title: 'Page A', nav: true },
+                { route: 'pageB', moduleId: 'viewmodels/pageB', title: 'Page B', nav: true },
+                { route: 'pageC', moduleId: 'viewmodels/pageC', title: 'Page C', nav: true }
+            ])
+			.buildNavigationModel()
+			.mapUnknownRoutes('viewmodels/pageA', 'not-found')
+			.activate();
+	}
+
+    return {
+        // Public Properties
+		deactivateMessage: deactivateMessage,
+		
+		// Public Methods
+        router: router,
+        activate: activate
     };
 });
