@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'knockout'], function (router, ko) {
+﻿define(['durandal/app', 'plugins/router', 'knockout'], function (app, router, ko) {
 
 	/////////////////////
 	// Private Members
