@@ -17,13 +17,16 @@
     </div>
     
     <div class="container-fluid page-host">
-		<div class="deactivate-message-area">
-			<p>This fiddle is designed to demonstrate the behavior of the isClose parameter that is passed to the viewmodel deactivate method during the viewmodel lifecyle</p>
-			<div>"Latest Deactivation Message: "<span data-bind="text: deactivateMessage"></span></div>
-		</div>
-		
 		<div class="main-content">
 			<!--ko router: { cacheViews:true }--><!--/ko-->
+		</div>
+		<div class="deactivate-message-area">
+			<p>This fiddle is designed to demonstrate the behavior of the isClose parameter that is passed to the viewmodel deactivate method during the viewmodel lifecyle</p>
+			
+			<p>For this example the router presenting Page A, B, or C has cacheviews set to true.  Notice that as the app is
+			navigated between pages the isClose parameter is always set to true even though the viewmodels are not being disposed.</p>
+			
+			<div>"Latest Deactivation Message: "<span data-bind="text: deactivateMessage"></span></div>
 		</div>
 	</div>
 </div>

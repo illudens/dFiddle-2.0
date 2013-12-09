@@ -1,0 +1,46 @@
+﻿.page-host {
+    position: relative;
+    top: 40px;
+}
+
+.navbar-fixed-top .navbar-inner {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.navbar-fixed-top .icon-home {
+    font-size: 18px
+}
+
+.well {
+    padding: 8px 0;
+}
+
+.loader {
+    margin: 6px 8px 4px 8px;
+    visibility: hidden;
+}
+
+.loader.active {
+    visibility: visible;
+}
+
+@media (max-width: 979px) {
+    .page-host {
+        top: 0;
+    }
+
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+}
+
+.main-content {
+	background-color: rgb(206, 206, 247);
+	min-height: 200px;
+	margin-bottom: 25px;
+}
+
+.main-content p {
+	max-width: 600px;
+}
